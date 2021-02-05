@@ -7,13 +7,15 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Notifications\CustomVerifyEmail;
 use App\Notifications\CustomResetPassword;
+use Overtrue\LaravelFavorite\traits\Favoriter;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use Notifiable;
+    use Notifiable, Favoriter;
 
         public function sendEmailverificationNotification()
         {
+
             $this->notify(new CustomVerifyEmail());
         }
 
@@ -47,4 +49,9 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function reviews()
+    {
+        return $this->hasMany('App\Review');
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use App\Category;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -20,6 +21,19 @@ class ProductController extends Controller
         return view('products.index',compact('products'));
     }
 
+    public function favorite(Product $product)
+    {
+        $user = Auth::user();
+
+        if ($user->hasFavorited($product)) {
+            $user->unfavorite($product);
+        }else{
+            $user->favorite($product);
+        }
+        return redirect()->route('products.show',$product);
+    }
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -28,7 +42,7 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::all();
-        
+
         return view ('products.create',compact('categories'));
     }
 
@@ -58,7 +72,9 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return view('products.show',compact('product'));
+        $reviews = $product->reviews()->get();
+
+        return view('products.show',compact('product','reviews'));
     }
 
     /**
@@ -70,7 +86,6 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $categories = Category::all();
-
         return view('products.edit',compact('product','categories'));
     }
 
