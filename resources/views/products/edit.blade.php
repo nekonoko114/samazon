@@ -7,7 +7,7 @@
     <div class="row w-75">
         <div class="col-5 offset-1">
             <img src="{{ asset('img/dummy.png')}}" class="w-100 img-fuild">
-        </div>
+      </div>
         <div class="col">
             <div class="d-flex flex-column">
                 <h1 class="">
