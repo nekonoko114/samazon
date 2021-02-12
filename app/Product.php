@@ -8,11 +8,11 @@ use Kyslik\ColumnSortable\Sortable;
 
 class Product extends Model
 {
-    use Favoriteable ,Sortable;
+    use Favoriteable, Sortable;
 
     public $sortable = [
         'price',
-        'update_at'
+        'updated_at'
     ];
 
     public function category()

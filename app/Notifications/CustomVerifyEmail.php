@@ -3,10 +3,10 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Notifications\Notification;
-use illuminate\Auth\Notifications\verifyEmail;
+use Illuminate\Auth\Notifications\VerifyEmail;
 
 class CustomVerifyEmail extends VerifyEmail
 {

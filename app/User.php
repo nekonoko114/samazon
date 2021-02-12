@@ -2,9 +2,9 @@
 
 namespace App;
 
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 use App\Notifications\CustomVerifyEmail;
 use App\Notifications\CustomResetPassword;
 use Overtrue\LaravelFavorite\traits\Favoriter;
@@ -13,9 +13,8 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable, Favoriter;
 
-        public function sendEmailverificationNotification()
+        public function sendEmailVerificationNotification()
         {
-
             $this->notify(new CustomVerifyEmail());
         }
 
@@ -29,9 +28,14 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','posta_code','address','phone'
+        'name',
+        'email',
+        'password',
+        'postal_code',
+        'address',
+        'phone'
     ];
-    
+
 
     /**
      * The attributes that should be hidden for arrays.

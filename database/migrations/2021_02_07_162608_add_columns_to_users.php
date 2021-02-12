@@ -17,7 +17,6 @@ class AddColumnsToUsers extends Migration
             $table->string('postal_code')->default('');
             $table->text('address')->default('');
             $table->string('phone')->default('');
-
         });
     }
 

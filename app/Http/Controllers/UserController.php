@@ -40,7 +40,7 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $user = Auth::user();
-        
+
         $user->name = $request->input('name') ? $request->input('name') : $user->name;
         $user->email = $request->input('email') ? $request->input('email') : $user->email;
         $user->postal_code = $request->input('postal_code') ? $request->input('postal_code') : $user->postal_code;
@@ -58,5 +58,21 @@ class UserController extends Controller
             return view('users.edit_address', compact('user'));
         }
 
+        public function edit_password()
+        {
+            return view('users.edit_password');
+        }
+
+        public function update_password(Request $request)
+        {
+            $user = Auth::user();
+
+            if ($request->input('password') == $request->input('confirm_password')) {
+                    $user->password = bcrypt($request->input('password'));
+                    $user->update();
+            } else {
+                return redirect()->route('mypage');
+            }
+        }
 
 }

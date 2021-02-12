@@ -12,7 +12,7 @@ class CustomResetPassword extends ResetPassword
 {
     use Queueable;
 
-        public $token;
+    public $token;
 
     /**
      * Create a new notification instance.
@@ -47,7 +47,7 @@ class CustomResetPassword extends ResetPassword
             ->subject(__('Reset Password'))
             ->line(__('Click button below and reset passwor.'))
             ->action(__('Reset Password'), url(route('password.reset', $this->token, false)))
-            ->line(__('If you did not request a password reset, no further action is required.'))
+            ->line(__('If you did not request a password reset, no further action is required.'));
 
     }
 
