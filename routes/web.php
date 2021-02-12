@@ -24,6 +24,9 @@ Route::get('users/mypage/address/edit', 'UserController@edit_address')->name('my
 
 Route::put('users/mypage', 'UserController@update')->name('mypage.update');
 
+//お気に入り
+Route::get('users/mypage/favorite', 'UserController@favorite')->name('mypage.favorite');
+
 // パスワード
 Route::get('users/mypage/password/edit', 'UserController@edit_password')->name('mypage.edit_password');
 

@@ -22,14 +22,14 @@ class ProductController extends Controller
 
 
         if ($request->sort !== null) {
-            $slices = explode(' ', $request->sort);
-            $sort_query[$slices[0]] = $slices[1];
-            $sorted = $request->sort;
+                $slices = explode(' ', $request->sort);
+                $sort_query[$slices[0]] = $slices[1];
+                $sorted = $request->sort;
         }
 
         if ($request->category !== null) {
-            $products = Product::where('category_id', $request->category)->sortable($sort_query)->paginate(15);
-            $category = Category::find($request->category);
+                $products = Product::where('category_id', $request->category)->sortable($sort_query)->paginate(15);
+                $category = Category::find($request->category);
         } else {
             $products = Product::sortable($sort_query)->paginate(15);
             $category = null;
