@@ -16,7 +16,7 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-
+        
         $sort_query = [];
         $sorted = "";
 
@@ -45,7 +45,6 @@ class ProductController extends Controller
 
         $categories = Category::all();
         $major_category_names = Category::pluck('major_category_name')->unique();
-
         return view('products.index', compact('products', 'category', 'categories', 'major_category_names', 'sort', 'sorted'));
     }
 
@@ -82,6 +81,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+
         $product = new Product();
         $product->name = $request->input('name');
         $product->description = $request->input('description');
@@ -89,7 +89,7 @@ class ProductController extends Controller
         $product->category_id = $request->input('category_id');
         $product->save();
 
-        return redirect()->route('products.show',['id' => $product->id]);
+        return redirect()->route('products.show',['product' => $product->id]);
     }
 
     /**

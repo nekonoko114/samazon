@@ -15,6 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//カート
+Route::get('user/cats', 'CartController@index')->name('carts.index');
+
+Route::post('user/cats', 'CartController@store')->name('carts.store');
+
 // 会員情報
 Route::get('users/mypage', 'UserController@mypage')->name('mypage');
 
